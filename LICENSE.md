@@ -1,4 +1,4 @@
-Copyright (c) 2014 Paul Betts
+Copyright (c) 2014 Drew Koch
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
