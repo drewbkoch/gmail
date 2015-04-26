@@ -17,4 +17,4 @@ setInterval ->
   if title and title isnt lastTitle
     bw.setTitle title
   lastTitle = title
-,300
+, 300
