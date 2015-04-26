@@ -6,6 +6,7 @@ path = require 'path'
 os = require 'os'
 net = require 'net'
 url = require 'url'
+ipc = require 'ipc'
 
 {EventEmitter} = require 'events'
 BrowserWindow = require 'browser-window'
@@ -22,13 +23,12 @@ class AppWindow
     @loadSettings = _.extend(@loadSettings, options)
 
     windowOpts =
-      width: 800
-      height: 600
-      title: options.title ? "Find My iPhone"
+      width: 1600
+      height: 1080
+      title: options.title ? ""
       'web-preferences':
         'subpixel-font-scaling': true
         'direct-write': true
-        'web-security': false
 
     windowOpts = _.extend(windowOpts, @loadSettings)
 
@@ -43,9 +43,17 @@ class AppWindow
     @window.on 'devtools-closed', (e) =>
       @window.webContents.send 'window:toggle-dev-tools', false
 
-  show: ->
 
-    @window.loadUrl "https://mail.google.com"
+  show: ->
+    targetPath = path.resolve(__dirname, '..', '..', 'static', 'index.html')
+
+    targetUrl = url.format
+      protocol: 'file'
+      pathname: targetPath
+      slashes: true
+      query: {loadSettings: JSON.stringify(@loadSettings)}
+
+    @window.loadUrl targetUrl
     @window.show()
 
   reload: ->

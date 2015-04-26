@@ -7,6 +7,7 @@ path = require 'path'
 os = require 'os'
 net = require 'net'
 url = require 'url'
+ipc = require 'ipc'
 
 {EventEmitter} = require 'events'
 _ = require 'underscore-plus'
